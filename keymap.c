@@ -8,17 +8,16 @@
 #define BASE   0 // default layer
 #define SYMB   1 // symbols
 #define MDIA   2 // media keys
-#define DVORAK 3 // Dvorak layout
 
-// #define VER  M(0) // Macro 0: Show version
-// #define EPRM M(1) // Macro 1: Reset EEPROM
+#define VRSN M(0) // Macro 0: Show version
+#define EPRM M(1) // Macro 1: Reset EEPROM
 
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE, // can always be here
-  EPRM,
-  VRSN,
-  RGB_SLD
-};
+// enum custom_keycodes {
+//   PLACEHOLDER = SAFE_RANGE, // can always be here
+//   EPRM,
+//   VRSN,
+//   RGB_SLD
+// };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -28,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |  Del   |   Q  |   W  |   E  |   R  |   T  | ~L2  |           | ~L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |Alt/Bks |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |Alt/J |   K  |   L  |; / L2|' / LGui|
+ * |Alt/Bks |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|' / LGui|
  * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
  * |LShift  |Z/Ctrl|   X  |   C  |   V  |   B  | Esc  |           |Space |   N  |   M  |   ,  |   .  |//Ctrl|RShift  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -57,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // right hand
     KC_RGHT,           KC_6,            KC_7,         KC_8,     KC_9,     KC_0,               KC_MINS,
     KC_FN1,            KC_Y,            KC_U,         KC_I,     KC_O,     KC_P,               KC_BSLS,
-                       KC_H,            ALT_T(KC_J),  KC_K,     KC_L,     LT(MDIA, KC_SCLN),  GUI_T(KC_QUOT),
+                       KC_H,            KC_J,         KC_K,     KC_L,     LT(MDIA, KC_SCLN),  GUI_T(KC_QUOT),
     MEH_T(KC_SPC),     KC_N,            KC_M,         KC_COMM,  KC_DOT,   CTL_T(KC_SLSH),     KC_RSFT,
                                         KC_UP,        KC_DOWN,  KC_LBRC,  C_S_T(KC_RBRC),     KC_FN1,
     KC_LALT,           CTL_T(KC_ESC),
@@ -67,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Symbol Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |Version |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
+ * |Version |  F1  |  F2  |  F3  |  F4  |  F5  | Down |           |  Up  |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   <  |   7  |   8  |   9  |   *  |   F12  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -75,49 +74,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   &  |   1  |   2  |   3  |   \  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |    . |   0  |   =  |      |
+ *   |      |      |      |      |      |                                       | EPRM |    . |   0  |   =  |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |Animat| ERPM |       |Toggle|Solid |
+ *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |Bright|Bright|      |       |      |Hue-  |Hue+  |
- *                                 |ness- |ness+ |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 // SYMBOLS
 [SYMB] = KEYMAP(
     // left hand
-    VRSN,      KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_TRNS,
+    VRSN,     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_DOWN,
     KC_TRNS,  KC_EXLM,  KC_AT,    KC_LCBR,  KC_RCBR,  KC_PIPE,  KC_TRNS,
     KC_TRNS,  KC_HASH,  KC_DLR,   KC_LPRN,  KC_RPRN,  KC_GRV,
     KC_TRNS,  KC_PERC,  KC_CIRC,  KC_LBRC,  KC_RBRC,  KC_TILD,  KC_TRNS,
-    KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-                                                      RGB_MOD,  EPRM,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+                                                      KC_TRNS,  KC_TRNS,
                                                                 KC_TRNS,
-                                            RGB_VAD,  RGB_VAI,  KC_TRNS,
+                                            KC_TRNS,  KC_TRNS,  KC_TRNS,
     // right hand
-    KC_TRNS,  KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,
+    KC_UP,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,
     KC_TRNS,  KC_LT,    KC_7,     KC_8,     KC_9,     KC_ASTR,  KC_F12,
               KC_GT,    KC_4,     KC_5,     KC_6,     KC_PLUS,  KC_TRNS,
     KC_TRNS,  KC_AMPR,  KC_1,     KC_2,     KC_3,     KC_BSLS,  KC_TRNS,
-                        KC_TRNS,  KC_DOT,   KC_0,     KC_EQL,   KC_TRNS,
-    RGB_TOG,  RGB_SLD,
+                        EPRM,     KC_DOT,   KC_0,     KC_EQL,   KC_TRNS,
+    KC_TRNS,  KC_TRNS,
     KC_TRNS,
-    KC_TRNS,  RGB_HUD,  RGB_HUI
+    KC_TRNS,  KC_TRNS,  KC_TRNS
 ),
 /* Keymap 2: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Wake  |      |      |      |      |      |SLEEP |           |POWER |PrtScr|ScrLck|Pause |      |      | Delete |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      | SUp  | MsUp |SDown | SUp  |      |           |      |      |      |      |      |      | Insert |
+ * |        |SDown | SUp  | MsUp |SDown | SUp  |      |           |      |      |      |      |      |      | Insert |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |Capslock|SLeft |MsLeft|MsDown|MsRght|SRight|------|           |------|      |      |      |      |      |  Play  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |SDown |      |           |      |      |      | Prev | Next |      |        |
+ * |        |      |      |      |      |      |      |           |      |      |      | Prev | Next |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      | ACL0 | ACL1 | ACL2 |                                       |VolUp |VolDn | Mute |      |      |
+ *   |      |      |      |      |      |                                       |VolUp |VolDn | Mute |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -131,10 +130,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MDIA] = KEYMAP(
     // left hand
     KC_WAKE,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_SLEP,
-    KC_TRNS,  KC_TRNS,  KC_WH_U,  KC_MS_U,  KC_WH_D,  KC_WH_U,  KC_TRNS,
+    KC_TRNS,  KC_WH_D,  KC_WH_U,  KC_MS_U,  KC_WH_D,  KC_WH_U,  KC_TRNS,
     KC_CAPS,  KC_WH_L,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_R,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_WH_D,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_ACL0,  KC_ACL1,  KC_ACL2,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
                                                       KC_TRNS,  KC_TRNS,
                                                                 KC_TRNS,
                                             KC_BTN1,  KC_BTN2,  KC_TRNS,
@@ -172,32 +171,32 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     return MACRO_NONE;
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        // dynamically generate these.
-        case EPRM:
-            if (record->event.pressed) {
-                eeconfig_init();
-            }
-            return false;
-            break;
-        case VRSN:
-            if (record->event.pressed) {
-                SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-            }
-            return false;
-            break;
-        case RGB_SLD:
-            if (record->event.pressed) {
-                #ifdef RGBLIGHT_ENABLE
-                    rgblight_mode(1);
-                #endif
-            }
-            return false;
-            break;
-    }
-    return true;
-}
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         // dynamically generate these.
+//         case EPRM:
+//             if (record->event.pressed) {
+//                 eeconfig_init();
+//             }
+//             return false;
+//             break;
+//         case VRSN:
+//             if (record->event.pressed) {
+//                 SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+//             }
+//             return false;
+//             break;
+//         case RGB_SLD:
+//             if (record->event.pressed) {
+//                 #ifdef RGBLIGHT_ENABLE
+//                     rgblight_mode(1);
+//                 #endif
+//             }
+//             return false;
+//             break;
+//     }
+//     return true;
+// }
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
