@@ -3,21 +3,23 @@
 
 #include "../../config.h"
 
-#undef  MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX 10
+// #undef  MOUSEKEY_INTERVAL
+// #define MOUSEKEY_INTERVAL 20
+
+// #undef  MOUSEKEY_DELAY
+// #define MOUSEKEY_DELAY 0
+
+// #undef  MOUSEKEY_TIME_TO_MAX
+// #define MOUSEKEY_TIME_TO_MAX 10
 
 #undef  MOUSEKEY_MAX_SPEED
-// #define MOUSEKEY_MAX_SPEED 4
 #define MOUSEKEY_MAX_SPEED 3
 
-#undef  MOUSEKEY_DELAY
-#define MOUSEKEY_DELAY 0
-
-#undef  MOUSEKEY_WHEEL_DELAY
-#define MOUSEKEY_WHEEL_DELAY 0
+// #undef  MOUSEKEY_WHEEL_DELAY
+// #define MOUSEKEY_WHEEL_DELAY 0
 
 #define ONESHOT_TAP_TOGGLE 2
-#define ONESHOT_TIMEOUT 3000
+#define ONESHOT_TIMEOUT    3000
 
 // Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap
 #undef LOCKING_SUPPORT_ENABLE
