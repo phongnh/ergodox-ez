@@ -7,7 +7,7 @@ cd ~/src
 if [ -d qmk_firmware ]; then
     cd qmk_firmware ; git fetch -p ; git reset --hard HEAD
 else
-    git clone https://github.com/jackhumbert/qmk_firmware
+    git clone https://github.com/qmk/qmk_firmware
 fi
 
 MY_KEYMAP="$HOME/src/qmk_firmware/keyboards/ergodox/keymaps/$(whoami)"
@@ -18,4 +18,4 @@ else
 fi
 
 cd ~/src/qmk_firmware/keyboards/ergodox
-make ez-`whoami`-clean
+make ez-`whoami`-clean ez-`whoami`

@@ -11,7 +11,7 @@ cd ~/src
 if [ -d qmk_firmware ]; then
     cd qmk_firmware ; git fetch -p ; git reset --hard origin/HEAD
 else
-    git clone https://github.com/jackhumbert/qmk_firmware
+    git clone https://github.com/qmk/qmk_firmware
 fi
 
 MY_KEYMAP="$HOME/src/qmk_firmware/keyboards/ergodox/keymaps/$(whoami)"
