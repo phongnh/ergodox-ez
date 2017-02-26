@@ -4,6 +4,7 @@
 COMMAND_ENABLE   = no  # Commands for debug and configuration
 SLEEP_LED_ENABLE = no  # Breathing sleep LED during USB suspend
 NKRO_ENABLE      = yes # Nkey Rollover
+ONEHAND_ENABLE   = no  # Allow swapping hands of keyboard
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
