@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-brew install teensy_loader_cli
-# brew cask install teensy
-
-brew tap osx-cross/avr
-brew install avr-libc
-brew install dfu-programmer
-
 mkdir -p ~/src
 cd ~/src
 if [ -d qmk_firmware ]; then
@@ -20,6 +13,13 @@ if [ -d "$MY_KEYMAP" ]; then
 else
     git clone https://github.com/phongnh/ergodox-ez-settings "$MY_KEYMAP"
 fi
+
+brew install teensy_loader_cli
+# brew cask install teensy
+
+brew tap osx-cross/avr
+brew install avr-libc
+brew install dfu-programmer
 
 cd ~/src/qmk_firmware/keyboards/ergodox
 make ez-`whoami`-clean ez-`whoami`-teensy
