@@ -13,7 +13,8 @@ enum custom_layers {
 };
 
 enum custom_keycodes {
-    CUSTOM = SAFE_RANGE,
+    PLACEHOLDER = SAFE_RANGE,
+    CUSTOM,
     QWERTY,
     DVORAK,
     VRSN,
@@ -252,7 +253,7 @@ void persistent_default_layer_set(uint16_t default_layer) {
 //         break;
 //     }
 //     return MACRO_NONE;
-// };
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -292,17 +293,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-};
+}
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
-    uint8_t layer = biton32(layer_state);
+}
 
+// Runs whenever there is a layer state change.
+uint32_t layer_state_set_user(uint32_t state) {
     ergodox_board_led_off();
     ergodox_right_led_1_off();
     ergodox_right_led_2_off();
     ergodox_led_all_set(LED_BRIGHTNESS_LO);
 
+    uint8_t layer = biton32(state);
     switch (layer) {
     case _SYMBOL:
         ergodox_right_led_1_on();
@@ -321,4 +325,6 @@ void matrix_scan_user(void) {
     else {
         ergodox_right_led_3_off();
     }
-};
+
+    return state;
+}
