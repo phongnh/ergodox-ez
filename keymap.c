@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "debug.h"
 #include "action_layer.h"
-#include "eeconfig.h"
 #include "version.h"
 
 enum custom_layers {
@@ -233,11 +232,6 @@ const uint16_t PROGMEM fn_actions[] = {
     [2] = ACTION_LAYER_TAP_TOGGLE(_MEDIA),
 };
 
-void persistent_default_layer_set(uint16_t default_layer) {
-    eeconfig_update_default_layer(default_layer);
-    default_layer_set(default_layer);
-}
-
 // const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 //     // MACRODOWN only works in this function
 //     switch(id) {
@@ -259,19 +253,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case JUKEBOX:
         if (record->event.pressed) {
-            persistent_default_layer_set(1UL << _JUKEBOX);
+            set_single_persistent_default_layer(_JUKEBOX);
         }
         return false;
         break;
     case QWERTY:
         if (record->event.pressed) {
-            persistent_default_layer_set(1UL << _QWERTY);
+            set_single_persistent_default_layer(_QWERTY);
         }
         return false;
         break;
     case DVORAK:
         if (record->event.pressed) {
-            persistent_default_layer_set(1UL << _DVORAK);
+            set_single_persistent_default_layer(_DVORAK);
         }
         return false;
         break;
