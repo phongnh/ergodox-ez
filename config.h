@@ -1,7 +1,9 @@
+#pragma once
+
 #ifndef CONFIG_PHONGNH_H_
 #define CONFIG_PHONGNH_H_
 
-#include "../../config.h"
+#define FORCE_NKRO
 
 // #undef  MOUSEKEY_INTERVAL
 // #define MOUSEKEY_INTERVAL 20
