@@ -4,7 +4,6 @@
 #include "version.h"
 
 enum custom_layers {
-    _JUKEBOX,
     _QWERTY,
     _DVORAK,
     _SYMBOL,
@@ -13,55 +12,13 @@ enum custom_layers {
 
 enum custom_keycodes {
     PLACEHOLDER = SAFE_RANGE,
-    JUKEBOX,
-    QWERTY,
-    DVORAK,
     VRSN,
     EPRM,
+    QWERTY,
+    DVORAK,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* My JukeBox Layer
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |    =   |   1  |   2  |   3  |   4  |   5  | Esc  |           | `  ~ |   6  |   7  |   8  |   9  |   0  |   -    |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |    \   |   Q  |   W  |   E  |   R  |   T  | ~L1  |           |  [   |   Y  |   U  |   I  |   O  |   P  |   ]    |
- * |--------+------+------+------+------+------|      |           |  L1  |------+------+------+------+------+--------|
- * |Alt/Tab |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|' / LGui|
- * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
- * |LShift  |Z/Ctrl|   X  |   C  |   V  |   B  |  Tab |           | Del  |   N  |   M  |   ,  |   .  |//Ctrl|RShift  |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LGui |` /CAG|AltShf| Left |Right |                                       | Left | Down |  Up  |Right | LAlt |
- *   `----------------------------------'                                       `----------------------------------'
- *                                       ,--------------.       ,---------------.
- *                                       |App/Alt| LGui |       | Alt  |Ctrl/Esc|
- *                                ,------|-------|------|       |------+--------+------.
- *                                |      |       | Home |       | PgUp |        |      |
- *                                | Space|BkSpace|------|       |------|  Tab   |Enter |
- *                                |      |       | End  |       | PgDn |        |      |
- *                                `---------------------'       `----------------------'
- */
-[_JUKEBOX] = LAYOUT_ergodox(
-    // left hand
-    KC_EQL,         KC_1,            KC_2,           KC_3,      KC_4,      KC_5,           KC_ESC,
-    KC_BSLS,        KC_Q,            KC_W,           KC_E,      KC_R,      KC_T,           KC_FN1,
-    ALT_T(KC_TAB),  KC_A,            KC_S,           KC_D,      KC_F,      KC_G,
-    KC_LSFT,        CTL_T(KC_Z),     KC_X,           KC_C,      KC_V,      KC_B,           ALL_T(KC_TAB),
-    KC_LGUI,        LCAG_T(KC_GRV),  LALT(KC_LSFT),  KC_LEFT,   KC_RIGHT,
-                                                                            ALT_T(KC_APP),  KC_LGUI,
-                                                                                            KC_HOME,
-                                                                 KC_SPC,    KC_BSPC,        KC_END,
-    // right hand
-    KC_GRV,                KC_6,           KC_7,     KC_8,     KC_9,    KC_0,                 KC_MINS,
-    LT(_SYMBOL, KC_LBRC),  KC_Y,           KC_U,     KC_I,     KC_O,    KC_P,                 KC_RBRC,
-                           KC_H,           KC_J,     KC_K,     KC_L,    LT(_MEDIA, KC_SCLN),  GUI_T(KC_QUOT),
-    MEH_T(KC_DELT),        KC_N,           KC_M,     KC_COMM,  KC_DOT,  CTL_T(KC_SLSH),       KC_RSFT,
-                                           KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT,             KC_LALT,
-    KC_LALT,               CTL_T(KC_ESC),
-    KC_PGUP,
-    KC_PGDN,               KC_TAB,         KC_ENT
-),
-
 /* Default Layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |    =   |   1  |   2  |   3  |   4  |   5  | Left |           | Right|   6  |   7  |   8  |   9  |   0  |   -    |
@@ -187,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Media and mouse keys
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  Wake  | JUKE |QWERTY|DVORAK|      |      |Sleep |           |Power | F14  | F15  |      |      |      |        |
+ * |  Wake  |      |QWERTY|DVORAK|      |      |Sleep |           |Power | F14  | F15  |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |MClick| MsUp |RClick|      |      |           |      |      |RClick| SUp  |MClick|      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -207,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_MEDIA] = LAYOUT_ergodox(
     // left hand
-    KC_WAKE,  JUKEBOX,  QWERTY,   DVORAK,   KC_TRNS,  KC_TRNS,  KC_SLEP,
+    KC_WAKE,  KC_TRNS,  QWERTY,   DVORAK,   KC_TRNS,  KC_TRNS,  KC_SLEP,
     KC_TRNS,  KC_TRNS,  KC_BTN3,  KC_MS_U,  KC_BTN2,  KC_TRNS,  KC_TRNS,
     KC_TRNS,  KC_BTN1,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_BTN1,
     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
@@ -228,47 +185,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
-    [1] = ACTION_LAYER_TAP_TOGGLE(_SYMBOL),
-    [2] = ACTION_LAYER_TAP_TOGGLE(_MEDIA),
+    [1] = ACTION_LAYER_TAP_TOGGLE(_SYMBOL),  // FN1 - Momentary Layer Symbols (_SYMBOL)
+    [2] = ACTION_LAYER_TAP_TOGGLE(_MEDIA),   // FN2 - Momentary Layer Media (_MEDIA)
 };
 
-// const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-//     // MACRODOWN only works in this function
-//     switch(id) {
-//     case 0:
-//         if (record->event.pressed) {
-//             SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-//         }
-//         break;
-//     case 1:
-//         if (record->event.pressed) { // For resetting EEPROM
-//             eeconfig_init();
-//         }
-//         break;
-//     }
-//     return MACRO_NONE;
-// }
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    // MACRODOWN only works in this function
+    switch(id) {
+    case 0:
+        if (record->event.pressed) {
+            SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+        }
+        break;
+    case 1:
+        if (record->event.pressed) { // For resetting EEPROM
+            eeconfig_init();
+        }
+        break;
+    }
+    return MACRO_NONE;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case JUKEBOX:
-        if (record->event.pressed) {
-            set_single_persistent_default_layer(_JUKEBOX);
-        }
-        return false;
-        break;
-    case QWERTY:
-        if (record->event.pressed) {
-            set_single_persistent_default_layer(_QWERTY);
-        }
-        return false;
-        break;
-    case DVORAK:
-        if (record->event.pressed) {
-            set_single_persistent_default_layer(_DVORAK);
-        }
-        return false;
-        break;
     case VRSN:
         if (record->event.pressed) {
             SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
@@ -282,6 +221,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
     }
+    case QWERTY:
+        if (record->event.pressed) {
+            set_single_persistent_default_layer(_QWERTY);
+        }
+        return false;
+        break;
+    case DVORAK:
+        if (record->event.pressed) {
+            set_single_persistent_default_layer(_DVORAK);
+        }
+        return false;
+        break;
     return true;
 }
 
