@@ -13,8 +13,7 @@ enum ergodox_ez_layers {
 };
 
 enum ergodox_ez_keycodes {
-    PLACEHOLDER = SAFE_RANGE,
-    VRSN,
+    VRSN = SAFE_RANGE,
     EPRM,
     QWERTY,
     DVORAK,
